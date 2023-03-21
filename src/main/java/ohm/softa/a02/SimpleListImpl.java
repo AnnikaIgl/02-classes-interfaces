@@ -55,7 +55,7 @@ public class SimpleListImpl implements SimpleList, Iterable {
     @Override
     public Iterator iterator() {
         return new Iterator() {
-            private Element current;
+            private Element current = head;
 
             //falls hasNext = false -> wir gehen nicht mehr in next rein!!!
             @Override
