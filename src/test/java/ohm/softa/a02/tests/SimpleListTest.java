@@ -46,8 +46,7 @@ public class SimpleListTest {
 		SimpleListImpl result = (SimpleListImpl) testList.filter(new SimpleFilter() {
 			@Override
 			public boolean include(Object item) {
-				int current = (int)item;
-				return current > 2;
+				return ((int)item) > 2;
 			}
 		});
 
@@ -59,10 +58,23 @@ public class SimpleListTest {
 
 	@Test
 	void testFilterLambda(){
-		SimpleListImpl result = (SimpleListImpl) testList.filter(o -> ((int)o) % 2 == 0);
+		SimpleListImpl result = (SimpleListImpl) testList.filter(o -> ((int)o) >2);
 		for(Object o : result){
 			int i = (int)o;
-			assertTrue(i % 2 == 0);
+			assertTrue(i > 2);
 		}
+	}
+
+	@Test
+	void testJedesDrittes(){
+		SimpleListImpl result = (SimpleListImpl) testList.filter(new SimpleFilter() {
+			int c = 0;
+			@Override
+			public boolean include(Object item) {
+				c++;
+				return c%3==0;
+			}
+		});
+
 	}
 }
